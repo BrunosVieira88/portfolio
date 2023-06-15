@@ -32,7 +32,7 @@
                     <span class="h2 position-absolute top-0 end-0 translate-middle p-2">FullStack</span>
                 </div>
             </div>
-            <div class="p-2 ms-5" style="background-color: white;position: absolute;">
+            <div class="p-2 box">
                 <span class="h7">
                     Meu nome é Bruno Santos Vieira, tenho 34 anos<br> 
                 </span>
@@ -41,18 +41,23 @@
                </span>
             </div>
               
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="d-flex justify-content-between ms-5">
-                <i class="fab fa-php fa-5x" style="color: white;"></i>
-                <i class="fab fa-js fa-5x" style="color: white;"></i>
-                <i class="fab fa-laravel fa-5x" style="color: white;"></i>
-                <i class="fab fa-bootstrap fa-5x" style="color: white;"></i>
-                <i class="fab fa-vuejs fa-5x" style="color: white;"></i>
+            <div class="d-flex flex-wrap justify-content-md-between stacks">
+                <div class="w-100 mb-3">
+                    <i class="fab fa-php fa-5x" style="color: white;"></i>
+                </div>
+                <div class="w-100 mb-3">
+                    <i class="fab fa-js fa-5x" style="color: white;"></i>
+                </div>
+                <div class="w-100 mb-3">
+                    <i class="fab fa-laravel fa-5x" style="color: white;"></i>
+                </div>
+                <div class="w-100 mb-3">
+                    <i class="fab fa-bootstrap fa-5x" style="color: white;"></i>
+                </div>
+                <div class="w-100 mb-3">
+                    <i class="fab fa-vuejs fa-5x" style="color: white;"></i>
+                </div>
             </div>
-               
         
               
 
@@ -180,5 +185,37 @@ createMatrixEffect();
             opacity: 1;
             transform: translateY(0);
         }
+    }
+    @media screen and (max-width: 760px) {
+        .h1{
+            color:rgb(10, 218, 27,0.8);
+            font-size: 400%;
+            text-shadow: white 2px 2px 1px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(-10%, 70%);
+        }
+        .h2{
+            color:rgb(14, 233, 25,0.5);
+            font-size: 300%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(-30%, 30%);
+            padding: 0.5rem;
+
+        }
+        .box{
+            position: absolute;
+            margin-top: 45%;
+            background-color: white;
+        }
+        .stacks{
+            margin-top: 120%;
+            justify-content: normal;
+            
+        }
+
     }
 </style>
