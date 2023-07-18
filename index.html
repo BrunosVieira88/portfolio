@@ -18,19 +18,21 @@
 
     <body>
         <div class="row">
-            <div id="matrix-text" class="matrix-effect" >
+            <div id="matrix-text" hidden class="matrix-effect">
                 !"#$%&'()*+,-./0123456789:;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
                 慣れて来たら OM●IYARI™ィング（オンラインミーティング）への参加
                 をさらに応用してみましょう。自分でスレッドとして投稿したり、メンタリング制度への参加、30ミーテ
                 、LIVE配信のヒアリング、あるいはコロナが落ち着いたらサークルでのオフ会、
                 その他イベント参加などもやれる事は盛り沢山です。どんどん参加してどんどん思いやりを習得していきましょう！
-                А, Б, В, Г, Д, Е (Ё), Ж, З, И, (Й), І, К, Л, М, Н, О, П, Р, С, Т, У, Ф, Х, Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Ѣ, Э, Ю, Я, Ѳ, Ѵ.
+                А, Б, В, Г, Д, Е (Ё), Ж, З, И, (Й), І, К, Л, М, Н, О, П, Р, С, Т, У, Ф, Х, Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Ѣ, Э, Ю,
+                Я, Ѳ, Ѵ.
                 "#$%&'()*+,-./0123456789:;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
                 慣れて来たら OM●IYARI™ィング（オンラインミーティング）への参加
                 をさらに応用してみましょう。自分でスレッドとして投稿したり、メンタリング制度への参加、30ミーテ
                 、LIVE配信のヒアリング、あるいはコロナが落ち着いたらサークルでのオフ会、
                 その他イベント参加などもやれる事は盛り沢山です。どんどん参加してどんどん思いやりを習得していきましょう！
-                А, Б, В, Г, Д, Е (Ё), Ж, З, И, (Й), І, К, Л, М, Н, О, П, Р, С, Т, У, Ф, Х, Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Ѣ, Э, Ю, Я, Ѳ, Ѵ.
+                А, Б, В, Г, Д, Е (Ё), Ж, З, И, (Й), І, К, Л, М, Н, О, П, Р, С, Т, У, Ф, Х, Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Ѣ, Э, Ю,
+                Я, Ѳ, Ѵ.
             </div>
         </div>
         <div class="row">
@@ -43,6 +45,7 @@
                 <div class="margin_topo">
                     <p class="fullstack_style">FullStack</p>
                     <p class="developer_style">Developer</p>
+                    <button onclick="Begin()">Enter in the matrix</button>
                     <div class="card_edit text-center">
                         <p>Meu nome é Bruno Santos Vieira</p>
                         <p>tenho 34 anos</p>
@@ -76,8 +79,10 @@
 </html>
 <style>
     body {
-        background-color: black;
+        background-color: #E6EEF5;
+        overflow-x: hidden;
     }
+
     .card_edit {
         border: 3px solid #3d3939;
         background-color: rgb(41, 35, 35);
@@ -132,13 +137,14 @@
     }
 
     .icon_color {
-        color: white;
+
         padding: 2vh;
+        padding: 2%;
 
     }
 
     .margin_topo {
-        margin-top: 15vh;
+        margin-top: 5vh;
     }
 
     @keyframes matrix-fall {
@@ -176,28 +182,32 @@
             font-size: 8vh;
             margin-left: 7vh;
         }
+
+        .black {
+            color: rgb(54, 54, 221);
+        }
     }
 </style>
 <script>
     function createMatrixEffect() {
-        const textElement = document.getElementById('matrix-text');
-        const text = textElement.innerText;
+        let textElement = document.getElementById('matrix-text');
+        let text = textElement.innerText;
 
         textElement.innerHTML = '';
 
         for (let i = 0; i < text.length; i++) {
-            const letter = document.createElement('span');
+            let letter = document.createElement('span');
             letter.className = 'matrix-letter';
             letter.innerText = text[i];
             textElement.appendChild(letter);
         }
 
-        const letters = textElement.getElementsByClassName('matrix-letter');
+        let letters = textElement.getElementsByClassName('matrix-letter');
         let contador = 0;
 
         function animateLetter(letter) {
-            const maxWidth = window.innerWidth;
-            const maxHeight = window.innerHeight;
+            let maxWidth = window.innerWidth;
+            let maxHeight = window.innerHeight;
 
             letter.style.left = Math.floor(Math.random() * maxWidth) + 'px'; // Define uma posição horizontal aleatória
             letter.style.top = Math.floor(Math.random() * maxHeight) + 'px'; // Define uma posição vertical aleatória
@@ -217,16 +227,16 @@
         }
 
         for (let i = 0; i < letters.length; i++) {
-            const letter = letters[i];
+            let letter = letters[i];
             animateLetter(letter);
         }
     }
 
     function removeAttributeOnResize() {
-        const stacksElement = document.querySelector('.stacks');
-        const removeAttribute = () => stacksElement.removeAttribute('justify-content-md-between');
+        let stacksElement = document.querySelector('.stacks');
+        let removeAttribute = () => stacksElement.removeAttribute('justify-content-md-between');
 
-        const handleResize = () => {
+        let handleResize = () => {
             if (window.innerWidth > 760) {
                 removeAttribute();
             }
@@ -234,7 +244,31 @@
 
         window.addEventListener('resize', handleResize);
     }
+    var isMatrixActive = false;
 
-    removeAttributeOnResize();
-    createMatrixEffect();
+    function Begin() {
+
+        let textElement = document.getElementById('matrix-text');
+        let iconElements = document.querySelectorAll('.icon_color');
+
+
+        if (isMatrixActive) {
+            textElement.setAttribute('hidden', true);
+            document.body.style.backgroundColor = "";
+            isMatrixActive = false;
+            for (let icon of iconElements) {
+                icon.style.color = 'blue'; 
+            }
+
+        } else {
+            textElement.removeAttribute('hidden');
+            document.body.style.backgroundColor = "black";
+            isMatrixActive = true;
+            for (let icon of iconElements) {
+                icon.style.color = 'green'; 
+            }
+            removeAttributeOnResize();
+            createMatrixEffect();
+        }
+    }
 </script>
