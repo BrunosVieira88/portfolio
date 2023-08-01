@@ -117,9 +117,9 @@
 
 
     .img_edit {
-        border-radius: 50%;
-
-        width: 50%;
+      
+        width: 50vh;
+        height: 55vh;
         position: relative;
         box-shadow: 8px 2px 8px #6e026e80;
         border: white 1px dashed;
@@ -179,14 +179,17 @@
     }
 
     @media screen and (max-width: 760px) {
-        .margin_topo {
-            margin-top: 0vh;
+        .img_edit {
+            border-radius: 50%;
+        max-width: 75%;
+        height: auto; /* Adicione essa linha para ajustar a altura automaticamente */
+        position: relative;
+        box-shadow: 8px 2px 8px #6e026e80;
+        border: white 1px dashed;
         }
 
-        .img_edit {
-            border-radius: 50vh;
-            height: 30vh;
-            width: 30vh;
+        .margin_topo {
+            margin-top: 0vh;
         }
 
         .developer_style {
@@ -228,8 +231,8 @@
             let maxWidth = window.innerWidth;
             let maxHeight = window.innerHeight;
 
-            letter.style.left = Math.floor(Math.random() * maxWidth) + 'px'; 
-            letter.style.top = Math.floor(Math.random() * maxHeight) + 'px'; 
+            letter.style.left = Math.floor(Math.random() * maxWidth) + 'px';
+            letter.style.top = Math.floor(Math.random() * maxHeight) + 'px';
 
             setTimeout(() => {
                 letter.style.opacity = 1;
@@ -242,7 +245,7 @@
                     animateLetter(letter); // Chama a função novamente para reiniciar a animação
 
                 }, contador); // Tempo em milissegundos antes da próxima queda
-            }, 1000); // Atraso inicial de 0 para iniciar imediatamente
+            }, 0); // Atraso inicial de 0 para iniciar imediatamente
         }
 
         for (let i = 0; i < letters.length; i++) {
