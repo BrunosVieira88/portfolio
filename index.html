@@ -17,7 +17,7 @@
         <title>Bruno Santos Vieira -Portfolio</title>
     </head>
 
-    <body>
+    <body id="changeColor">
         <div class="row">
             <div id="matrix-text" hidden class="matrix-effect">
                 !"#$%&'()*+,-./0123456789:;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -42,7 +42,7 @@
                     <img src="bmassas.jpeg" class="img-fluid img_edit mt-5" alt="Foto Perfil Bruno" /> <br>
                 </div>
                 <div class="d-flex justify-content-center" onclick="Begin()">
-                    <button class="btn botao-matrix mt-3" >Enter in the matrix</button>
+                    <button class="btn botao-matrix mt-3">Enter in the matrix</button>
                 </div>
             </div>
             <div class="col-md-6 text-center">
@@ -117,8 +117,9 @@
 
 
     .img_edit {
-        border-radius: 200vh;
-       
+        border-radius: 50%;
+
+        width: 50%;
         position: relative;
         box-shadow: 8px 2px 8px #6e026e80;
         border: white 1px dashed;
@@ -227,8 +228,8 @@
             let maxWidth = window.innerWidth;
             let maxHeight = window.innerHeight;
 
-            letter.style.left = Math.floor(Math.random() * maxWidth) + 'px'; // Define uma posição horizontal aleatória
-            letter.style.top = Math.floor(Math.random() * maxHeight) + 'px'; // Define uma posição vertical aleatória
+            letter.style.left = Math.floor(Math.random() * maxWidth) + 'px'; 
+            letter.style.top = Math.floor(Math.random() * maxHeight) + 'px'; 
 
             setTimeout(() => {
                 letter.style.opacity = 1;
@@ -241,7 +242,7 @@
                     animateLetter(letter); // Chama a função novamente para reiniciar a animação
 
                 }, contador); // Tempo em milissegundos antes da próxima queda
-            }, 0); // Atraso inicial de 0 para iniciar imediatamente
+            }, 1000); // Atraso inicial de 0 para iniciar imediatamente
         }
 
         for (let i = 0; i < letters.length; i++) {
@@ -250,18 +251,6 @@
         }
     }
 
-    function removeAttributeOnResize() {
-        let stacksElement = document.querySelector('.stacks');
-        let removeAttribute = () => stacksElement.removeAttribute('justify-content-md-between');
-
-        let handleResize = () => {
-            if (window.innerWidth > 760) {
-                removeAttribute();
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-    }
     var isMatrixActive = false;
 
     function Begin() {
@@ -280,13 +269,45 @@
 
         } else {
             textElement.removeAttribute('hidden');
-            document.body.style.backgroundColor = "black";
+            let changeColor = document.getElementById("changeColor");
+            darkenBackgroundColor(changeColor, 2000);
             isMatrixActive = true;
             for (let icon of iconElements) {
                 icon.style.color = 'green';
             }
-            removeAttributeOnResize();
             createMatrixEffect();
         }
+
+        function darkenBackgroundColor(element, duration) {
+            let currentColor = window.getComputedStyle(element).backgroundColor;
+            let currentRed = parseInt(currentColor.substr(4, 3));
+            let currentGreen = parseInt(currentColor.substr(9, 3));
+            let currentBlue = parseInt(currentColor.substr(14, 3));
+            let targetRed = 0;
+            let targetGreen = 0;
+            let targetBlue = 0;
+            let steps = 50; // Number of steps for the animation
+            let stepInterval = duration / steps;
+
+            let stepRed = (currentRed - targetRed) / steps;
+            let stepGreen = (currentGreen - targetGreen) / steps;
+            let stepBlue = (currentBlue - targetBlue) / steps;
+
+            let currentStep = 0;
+
+            let interval = setInterval(function () {
+                currentRed -= stepRed;
+                currentGreen -= stepGreen;
+                currentBlue -= stepBlue;
+                element.style.backgroundColor = `rgb(${currentRed}, ${currentGreen}, ${currentBlue})`;
+
+                currentStep++;
+                if (currentStep >= steps) {
+                    clearInterval(interval);
+                }
+            }, stepInterval);
+        }
+
+
     }
 </script>
