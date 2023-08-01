@@ -98,7 +98,7 @@
     }
 
     body {
-        background-color: #E6EEF5;
+        background-color: #fafbfc;
         overflow-x: hidden;
     }
 
@@ -255,14 +255,18 @@
     }
 
     var isMatrixActive = false;
+    const audio = new Audio('matrix.mp3');
 
     function Begin() {
 
         let textElement = document.getElementById('matrix-text');
         let iconElements = document.querySelectorAll('.icon_color');
 
-
+        
+    
         if (isMatrixActive) {
+            audio.pause();
+
             textElement.setAttribute('hidden', true);
             document.body.style.backgroundColor = "";
             isMatrixActive = false;
@@ -271,6 +275,7 @@
             }
 
         } else {
+            audio.play();
             textElement.removeAttribute('hidden');
             let changeColor = document.getElementById("changeColor");
             darkenBackgroundColor(changeColor, 2000);
